@@ -662,7 +662,11 @@ function regexSprite(textSprite, conversionTable, species){
 
                 const matchPath = line.match(/graphics\/pokemon\/(\w+\/\w+\/\w+\/\w+\/\w+|\w+\/\w+\/\w+\/\w+|\w+\/\w+\/\w+|\w+\/\w+|\w+)\//i) // ¯\_(ツ)_/¯
                 if(matchPath !== null){
-                    const path = matchPath[1]
+                    let path = matchPath[1]
+                    if(path === "castform")
+                        path = "castform/normal"
+                    else if(path === "cherrim")
+                        path = "cherrim/normal"
                     const url = `https://raw.githubusercontent.com/${repoDex}/data/species/pokemon/${path}/front.png`
                     for(let i = 0; i < conversionTable[conversion].length; i++){
                         species[speciesArray[i]]["sprite"] = url
