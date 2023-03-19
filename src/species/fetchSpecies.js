@@ -29,12 +29,19 @@ async function getLevelUpLearnsets(species){
     return regexLevelUpLearnsets(textLevelUpLearnsets, levelUpLearnsetsConversionTable, species)
 }
 
-async function getTMHMLearnsets(species){
-    footerP("Fetching TMHM learnsets")
-    const rawTMHMLearnsets = await fetch(`https://raw.githubusercontent.com/${repo}/data/species/tmhm_learnsets.h`)
-    const textTMHMLearnsets = await rawTMHMLearnsets.text()
+async function getTeachableLearnsets(species){
+    footerP("Fetching TMHM/Tutor learnsets")
+    const rawTeachableLearnsets = await fetch(`https://raw.githubusercontent.com/${repo}/data/species/teachable_learnsets.h`)
+    const textTeachableLearnsets = await rawTeachableLearnsets.text()
 
-    return regexTMHMLearnsets(textTMHMLearnsets, species)
+    const rawTeachableLearnsetsPointers = await fetch(`https://raw.githubusercontent.com/${repo}/data/species/teachable_learnset_pointers.h`)
+    const textTeachableLearnsetsPointers = await rawTeachableLearnsetsPointers.text()
+
+
+    const teachableLearnsetsConversionTable = getTeachableLearnsetsConversionTable(textTeachableLearnsetsPointers)
+
+
+    return regexTeachableLearnsets(textTeachableLearnsets, teachableLearnsetsConversionTable, species)
 }
 
 async function getEvolution(species){
@@ -59,14 +66,6 @@ async function getEggMovesLearnsets(species){
     const textEggMoves = await rawEggMoves.text()
 
     return regexEggMovesLearnsets(textEggMoves, species)
-}
-
-async function getTutorLearnsets(species){
-    footerP("Fetching tutor learnsets")
-    const rawTutorLearnsets = await fetch(`https://raw.githubusercontent.com/${repo}/data/species/tutor_learnsets.h`)
-    const tutorLearnsets = await rawTutorLearnsets.text()
-
-    return regexTutorLearnsets(tutorLearnsets, species)
 }
 
 async function getSprite(species){
@@ -104,9 +103,8 @@ async function buildSpeciesObj(){
     species = await getBaseStats(species)
     species = await getChanges(species, "https://raw.githubusercontent.com/rh-hideout/pokeemerald-expansion/master/src/data/pokemon/species_info.h")
     species = await getLevelUpLearnsets(species)
-    species = await getTMHMLearnsets(species)
+    species = await getTeachableLearnsets(species)
     species = await getEggMovesLearnsets(species)
-    species = await getTutorLearnsets(species)
     species = await getSprite(species)
 
     await localStorage.setItem("species", LZString.compressToUTF16(JSON.stringify(species)))

@@ -77,11 +77,7 @@ function regexGameCornerLocations(textGameCornerLocations, locations){
 
 function replaceMethodString(method, index){
 	if(method.match(/fish/i) !== null){
-		if(index >=0 && index <= 1)
-			return "Old Rod"
-		else if(index >= 2 && index <= 4)
-			return "Good Rod"
-		else if(index >= 5 && index <= 9)
+		if(index >= 0 && index <= 9)
 			return "Super Rod"
 		else
 			return "Fishing"
@@ -107,18 +103,18 @@ function replaceMethodString(method, index){
 
 function returnRarity(method, index){
 	if(method === "Land" || method === "land_mons"){
-		if(index === 0 || index === 1)
+		if(index === 0)
 			return 20
-		else if(index >= 2 && index <= 5){
+		else if(index >= 1 && index <= 6){
 			return 10
 		}
-		else if(index >= 6 && index <= 7){
+		else if(index >= 7 && index <= 9){
 			return 5
 		}
-		else if(index >= 8 && index <= 9){
+		else if(index === 10){
 			return 4
 		}
-		else if(index >= 10 || index <= 11){
+		else if(index === 11){
 			return 1
 		}
 		else
@@ -139,7 +135,21 @@ function returnRarity(method, index){
 		else
 			return 100
 	}
-	else if(method === "Surfing" || method === "Rock Smash"){
+	else if(method === "Surfing"){
+		if(index === 0)
+			return 30
+		else if(index === 1)
+			return 30
+		else if(index === 2)
+			return 20
+		else if(index === 3)
+			return 10
+		else if(index === 4)
+			return 10
+		else
+			return 100
+	}
+	else if(method === "Rock Smash"){
 		if(index === 0)
 			return 60
 		else if(index === 1)
@@ -153,33 +163,17 @@ function returnRarity(method, index){
 		else
 			return 100
 	}
-	else if(method === "Old Rod"){
-		if(index === 0)
-			return 60
-		else if(index === 1)
-			return 40
-		else 
-			return 100
-	}
-	else if(method === "Good Rod"){
-		if(index === 2)
-			return 60
-		else if(index === 3 || index === 4)
-			return 20
-		else 
-			return 100
-	}
 	else if(method === "Super Rod"){
-		if(index === 5)
-			return 40
-		else if(index === 6)
-			return 30
-		else if(index === 7)
-			return 15
-		else if(index === 8)
+		if(index >= 0 && index <= 1)
+			return 20
+		else if(index >= 2 && index <= 6)
 			return 10
-		else if(index === 9)
+		else if(index === 7)
 			return 5
+		else if(index === 8)
+			return 4
+		else if(index === 9)
+			return 1
 		else 
 			return 100
 	}

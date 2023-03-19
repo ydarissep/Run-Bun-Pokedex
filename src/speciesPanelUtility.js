@@ -276,10 +276,6 @@ async function createSpeciesPanel(name){
         speciesPanelLevelUpTableTbody.removeChild(speciesPanelLevelUpTableTbody.firstChild)
     buildSpeciesPanelLearnsetsTable(speciesPanelLevelUpTableTbody, name, "levelUpLearnsets")
 
-    while(speciesPanelTMHMTableTbody.firstChild)
-        speciesPanelTMHMTableTbody.removeChild(speciesPanelTMHMTableTbody.firstChild)
-    buildSpeciesPanelLearnsetsTable(speciesPanelTMHMTableTbody, name, "TMHMLearnsets")
-
     while(speciesPanelTutorTableTbody.firstChild)
         speciesPanelTutorTableTbody.removeChild(speciesPanelTutorTableTbody.firstChild)
     buildSpeciesPanelEggMovesTable(speciesPanelTutorTableTbody, name, "tutorLearnsets")

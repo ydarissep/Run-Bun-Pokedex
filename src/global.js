@@ -1,5 +1,5 @@
-window.repo = "ydarissep/Techno-Emerald-Pokedex/main"
-window.repoDex = "ydarissep/Techno-Emerald-Pokedex/main"
+window.repo = "ydarissep/Run-Bun-Pokedex/main"
+window.repoDex = "ydarissep/Run-Bun-Pokedex/main"
 
 window.panelSpecies = ""
 
