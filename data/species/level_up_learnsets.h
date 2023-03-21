@@ -1974,7 +1974,7 @@ static const struct LevelUpMove sSeadraLevelUpLearnset[] = {
     LEVEL_UP_MOVE(60, MOVE_HYDRO_PUMP),
     LEVEL_UP_END
 };
-// .abilities = {ABILITY_SWIFT_SWIM, ABILITY_SNIPER, ABILITY_DAMP},
+// .abilities = {ABILITY_POISON_POINT, ABILITY_SNIPER, ABILITY_DAMP},
 
 static const struct LevelUpMove sKingdraLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_BUBBLE),
@@ -3232,10 +3232,45 @@ static const struct LevelUpMove sAzumarillLevelUpLearnset[] = {
 // .abilities = {ABILITY_THICK_FAT, ABILITY_NONE, ABILITY_HUGE_POWER},
 // Stat changes: +15 Atk, +30 SpA
 
-static const struct LevelUpMove sSudowoodoLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 1, MOVE_NONE),
+static const struct LevelUpMove sBonslyLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 1, MOVE_FAKE_TEARS),
+    LEVEL_UP_MOVE( 1, MOVE_FLAIL),
+    LEVEL_UP_MOVE( 5, MOVE_LOW_KICK),
+    LEVEL_UP_MOVE( 8, MOVE_TEARFUL_LOOK),
+    LEVEL_UP_MOVE(12, MOVE_ROCK_THROW),
+    LEVEL_UP_MOVE(15, MOVE_BLOCK),
+    LEVEL_UP_MOVE(19, MOVE_FEINT_ATTACK),
+    LEVEL_UP_MOVE(22, MOVE_MIMIC),
+    LEVEL_UP_MOVE(26, MOVE_ROCK_TOMB),
+    LEVEL_UP_MOVE(29, MOVE_ROCK_SLIDE),
+    LEVEL_UP_MOVE(33, MOVE_SUCKER_PUNCH),
+    LEVEL_UP_MOVE(36, MOVE_DOUBLE_EDGE),
+    LEVEL_UP_MOVE(40, MOVE_STONE_EDGE),
+    LEVEL_UP_MOVE(43, MOVE_HEAD_SMASH),
     LEVEL_UP_END
 };
+// .abilities = {ABILITY_STURDY, ABILITY_ROCK_HEAD, ABILITY_ROCK_HEAD},
+
+static const struct LevelUpMove sSudowoodoLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 1, MOVE_FAKE_TEARS),
+    LEVEL_UP_MOVE( 1, MOVE_FLAIL),
+    LEVEL_UP_MOVE( 5, MOVE_LOW_KICK),
+    LEVEL_UP_MOVE( 8, MOVE_TEARFUL_LOOK),
+    LEVEL_UP_MOVE(12, MOVE_ROCK_THROW),
+    LEVEL_UP_MOVE(15, MOVE_BLOCK),
+    LEVEL_UP_MOVE(19, MOVE_FEINT_ATTACK),
+    LEVEL_UP_MOVE(22, MOVE_MIMIC),
+    LEVEL_UP_MOVE(27, MOVE_ROCK_TOMB),
+    LEVEL_UP_MOVE(31, MOVE_ROCK_SLIDE),
+    LEVEL_UP_MOVE(36, MOVE_SUCKER_PUNCH),
+    LEVEL_UP_MOVE(40, MOVE_DOUBLE_EDGE),
+    LEVEL_UP_MOVE(45, MOVE_HAMMER_ARM),
+    LEVEL_UP_MOVE(49, MOVE_STONE_EDGE),
+    LEVEL_UP_MOVE(54, MOVE_WOOD_HAMMER),
+    LEVEL_UP_MOVE(60, MOVE_HEAD_SMASH),
+    LEVEL_UP_END
+};
+// .abilities = {ABILITY_STURDY, ABILITY_ROCK_HEAD, ABILITY_ROCK_HEAD},
 
 static const struct LevelUpMove sPolitoedLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_NONE),
@@ -6997,11 +7032,6 @@ static const struct LevelUpMove sBronzorLevelUpLearnset[] = {
 };
 
 static const struct LevelUpMove sBronzongLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 1, MOVE_NONE),
-    LEVEL_UP_END
-};
-
-static const struct LevelUpMove sBonslyLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_NONE),
     LEVEL_UP_END
 };
