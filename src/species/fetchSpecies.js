@@ -139,8 +139,6 @@ function initializeSpeciesObj(species){
         species[name]["forms"] = []
         species[name]["sprite"] = ""
     }
-    delete species["SPECIES_NONE"]
-    delete species["SPECIES_EGG"]
     return species
 }
 
@@ -152,14 +150,22 @@ async function fetchSpeciesObj(){
         window.species = await JSON.parse(LZString.decompressFromUTF16(localStorage.getItem("species")))
 
 
-    window.spritesObj = {}
-    if(localStorage.getItem("sprites")){
-        spritesObj = JSON.parse(localStorage.getItem("sprites"))
-        Object.keys(spritesObj).forEach(species => {
-            spritesObj[species] = LZString.decompressFromUTF16(spritesObj[species])
-        })
+    window.sprites = {}
+    window.speciesTracker = []
+
+    await Object.keys(species).forEach(async name => {
+        if(!localStorage.getItem(`${name}`)){
+            await spriteRemoveBgReturnBase64(name, species)
+        }
+        if(localStorage.getItem(`${name}`)){
+            sprites[name] = await LZString.decompressFromUTF16(localStorage.getItem(`${name}`))
+        }
+    })
+    for(let i = 0, j = Object.keys(species).length; i < j; i++){
+        speciesTracker[i] = {}
+        speciesTracker[i]["key"] = Object.keys(species)[i]
+        speciesTracker[i]["filter"] = []
     }
 
-    await displaySpecies()
+    tracker = speciesTracker
 }
-
