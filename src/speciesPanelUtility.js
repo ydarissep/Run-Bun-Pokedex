@@ -83,10 +83,6 @@ async function createSpeciesPanel(name){
             abilityDescription.className = "speciesPanelAbilitiesDescriptionPadding"
             abilityContainer.className = "flex wrap"
 
-            if(hardcoreRestricted.includes(abilities[ability]["name"])){
-                    abilityName.style.color = "#FF8F8F"
-            }
-
             abilityContainer.append(abilityName)
             abilityContainer.append(abilityDescription)
             speciesAbilities.append(abilityContainer)
@@ -98,7 +94,8 @@ async function createSpeciesPanel(name){
 
 
 
-    let monStats = [species[name]["baseHP"],
+
+    let monStats = [species[name]["baseHP"], 
     species[name]["baseAttack"], 
     species[name]["baseDefense"], 
     species[name]["baseSpAttack"], 
@@ -185,19 +182,12 @@ async function createSpeciesPanel(name){
 
 
 
-
-
-
-
-
-
     while (speciesEggGroups.firstChild) 
         speciesEggGroups.removeChild(speciesEggGroups.firstChild)
     while (speciesHeldItems.firstChild)
         speciesHeldItems.removeChild(speciesHeldItems.firstChild)
     while (speciesChanges.firstChild)
         speciesChanges.removeChild(speciesChanges.firstChild)
-
 
 
 
@@ -213,12 +203,15 @@ async function createSpeciesPanel(name){
 
 
 
-    if(species[name]["item1"] !== "ITEM_NONE"){
+
+
+
+    if(species[name]["item1"] !== ""){
         const heldItem1 = document.createElement("div")
         heldItem1.innerText = `50% ${sanitizeString(species[name]["item1"])}`
         speciesHeldItems.append(heldItem1)
     }
-    if(species[name]["item2"] !== "ITEM_NONE"){
+    if(species[name]["item2"] !== ""){
         const heldItem2 = document.createElement("div")
         heldItem2.innerText = `5% ${sanitizeString(species[name]["item2"])}`
         speciesHeldItems.append(heldItem2)
@@ -228,6 +221,7 @@ async function createSpeciesPanel(name){
         speciesHeldItemsContainer.classList.remove("hide")
     else
         speciesHeldItemsContainer.classList.add("hide")
+
 
 
 
@@ -273,9 +267,7 @@ async function createSpeciesPanel(name){
         typeEffectivenessContainer.append(checkType)
         typeEffectivenessContainer.append(typeEffectivenessValue)
         speciesTypeChart.append(typeEffectivenessContainer)
-    })    
-
-
+    })
 
 
 
@@ -284,21 +276,15 @@ async function createSpeciesPanel(name){
         speciesPanelLevelUpTableTbody.removeChild(speciesPanelLevelUpTableTbody.firstChild)
     buildSpeciesPanelLearnsetsTable(speciesPanelLevelUpTableTbody, name, "levelUpLearnsets")
 
-    while(speciesPanelTMHMTableTbody.firstChild)
-        speciesPanelTMHMTableTbody.removeChild(speciesPanelTMHMTableTbody.firstChild)
-    buildSpeciesPanelLearnsetsTable(speciesPanelTMHMTableTbody, name, "TMHMLearnsets")
-
     while(speciesPanelTutorTableTbody.firstChild)
         speciesPanelTutorTableTbody.removeChild(speciesPanelTutorTableTbody.firstChild)
-    buildSpeciesPanelLearnsetsTable(speciesPanelTutorTableTbody, name, "tutorLearnsets")
+    buildSpeciesPanelEggMovesTable(speciesPanelTutorTableTbody, name, "tutorLearnsets")
 
     while(speciesPanelEggMovesTableTbody.firstChild)
         speciesPanelEggMovesTableTbody.removeChild(speciesPanelEggMovesTableTbody.firstChild)
     buildSpeciesPanelEggMovesTable(speciesPanelEggMovesTableTbody, name, "eggMovesLearnsets")
 
 }
-
-
 
 
 
@@ -318,12 +304,7 @@ speciesPanelInputSpecies.addEventListener("input", e => {
 
 function getSpeciesSpriteSrc(speciesName){
     if(sprites[speciesName]){
-        if(sprites[speciesName].length < 500){
-            return species[speciesName]["sprite"]
-        }
-        else{
-            return sprites[speciesName]
-        }
+        return sprites[speciesName]
     }
     else{
         return species[speciesName]["sprite"]
@@ -361,18 +342,12 @@ function createClickableImgAndName(speciesName){
 
 
 
-
-
 function createChange(stat, oldStat = [""], newStat = [""], speciesName, obj){
-
     if(typeof newStat == "object"){
         for (let i = 0; i < newStat.length; i++){
-
-
             const changeMainContainer = document.createElement("div")
             const changeContainer = document.createElement("span")
             const statContainer = document.createElement("span")
-
             const oldStatContainer = document.createElement("span")
             const newStatContainer = document.createElement("span")
 
@@ -399,18 +374,12 @@ function createChange(stat, oldStat = [""], newStat = [""], speciesName, obj){
         }
     }
     else if(newStat !== oldStat){
-
-
         const changeMainContainer = document.createElement("div")
         const changeContainer = document.createElement("span")
         const statContainer = document.createElement("span")
-
         const oldStatContainer = document.createElement("span")
         const newStatContainer = document.createElement("span")
-
         statContainer.innerText = replaceStatString(stat)
-
-
         oldStatContainer.innerText = `${sanitizeString(oldStat)}`
         newStatContainer.innerText = `${sanitizeString(newStat)}`
         if(!isNaN(newStat)){
@@ -447,6 +416,8 @@ function appendChangesToObj(changeMainContainer, statContainer, changeContainer,
     changeMainContainer.append(statContainer, changeContainer)
     obj.append(changeMainContainer)
 }
+
+
 
 
 
@@ -497,6 +468,19 @@ function replaceStatString(stat){
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 function buildSpeciesPanelLearnsetsTable(Tbody, name, input){
     for (let i = 0; i < species[name][input].length; i++){
         const row = document.createElement("tr")
@@ -508,11 +492,6 @@ function buildSpeciesPanelLearnsetsTable(Tbody, name, input){
         const moveName = document.createElement("td")
         moveName.innerText = moves[species[name][input][i][0]]["ingameName"]
         moveName.className = "bold"
-
-        if(hardcoreRestricted.includes(moves[species[name][input][i][0]]["name"])){
-            moveName.style.color = "#FF8F8F"
-        }
-
         row.append(moveName)
 
         const typeContainer = document.createElement("td")
@@ -557,7 +536,7 @@ function buildSpeciesPanelLearnsetsTable(Tbody, name, input){
         const description = document.createElement("td")
         description.className = "speciesPanelLearnsetsEffect"
         for (let j = 0; j < moves[species[name][input][i][0]]["description"].length; j++){
-            description.innerText += moves[species[name][input][i][0]]["description"][j].replace(/\\n/gi, " ").replace(/\\/g, "")
+            description.innerText += moves[species[name][input][i][0]]["description"][j].replace("\\n", " ")
         }
         row.append(description)
 
@@ -573,11 +552,6 @@ function buildSpeciesPanelEggMovesTable(Tbody, name, input){
         const moveName = document.createElement("td")
         moveName.innerText = moves[species[name][input][i]]["ingameName"]
         moveName.className = "bold"
-
-        if(hardcoreRestricted.includes(moves[species[name][input][i]]["name"])){
-            moveName.style.color = "#FF8F8F"
-        }
-
         row.append(moveName)
 
         const typeContainer = document.createElement("td")
@@ -622,7 +596,7 @@ function buildSpeciesPanelEggMovesTable(Tbody, name, input){
         const description = document.createElement("td")
         description.className = "speciesPanelLearnsetsEffect"
         for (let j = 0; j < moves[species[name][input][i]]["description"].length; j++){
-            description.innerText += moves[species[name][input][i]]["description"][j].replace(/\\n/gi, " ").replace(/\\/g, "")
+            description.innerText += moves[species[name][input][i]]["description"][j].replace("\\n", " ")
         }
         row.append(description)
 
@@ -637,4 +611,3 @@ function buildSpeciesPanelEggMovesTable(Tbody, name, input){
 speciesPanelCloseButton.addEventListener("click", () => {
         speciesPanelMainContainer.classList.add("hide")
 })
-
