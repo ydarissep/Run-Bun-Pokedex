@@ -1,4 +1,4 @@
-window.repo = "ydarissep/Run-Bun-Pokedex/main"
+window.repo = "dekzeh/runandbundex/master"
 window.repoDex = "ydarissep/Run-Bun-Pokedex/main"
 
 window.tracker
