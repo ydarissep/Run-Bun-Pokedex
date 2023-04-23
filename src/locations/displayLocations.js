@@ -30,6 +30,16 @@ function appendLocationsToTable(key){
     let row = document.createElement("tr")
     row.setAttribute("id", `${key}`)
 
+    let rarity = document.createElement("td")
+    const locationsInfo = document.createElement("div")
+    rarity.className = "rarity"
+    rarity.innerText = `${locations[location][method][speciesKey]}%`
+    rarity.style.color = `hsl(${locations[location][method][speciesKey]*2},85%,45%)`
+    locationsInfo.innerText = `${location} ${method}`
+    locationsInfo.className = "locationsInfo hide"
+    rarity.append(locationsInfo)
+    row.append(rarity)
+
     let spriteContainer = document.createElement("td")
     spriteContainer.className = "sprite"
     let sprite = document.createElement("img")
@@ -46,15 +56,11 @@ function appendLocationsToTable(key){
     speciesContainer.append(speciesName)
     row.append(speciesContainer)
 
-    let rarity = document.createElement("td")
-    const locationsInfo = document.createElement("div")
-    rarity.className = "rarity"
-    rarity.innerText = `${locations[location][method][speciesKey]}%`
-    rarity.style.color = `hsl(${locations[location][method][speciesKey]*2},85%,45%)`
-    locationsInfo.innerText = `${location} ${method}`
-    locationsInfo.className = "locationsInfo hide"
-    rarity.append(locationsInfo)
-    row.append(rarity)
+    let catchRateContainer = document.createElement("td")
+    const catchRate = document.createElement("div")
+    catchRate.innerText = `${species[speciesKey]["catchRate"]}`
+    catchRateContainer.append(catchRate)
+    row.append(catchRateContainer)
 
     row.addEventListener("click", () => {
         scrollToSpecies = row.id
@@ -78,7 +84,7 @@ function createRowHeader(location, method){
 
     let headerContainer = document.createElement("th")
     headerContainer.innerText = `${location} ${method}`
-    headerContainer.colSpan = "2"
+    headerContainer.colSpan = "3"
     headerContainer.className = "headerContainer"
     locationTableHeader.append(headerContainer)
 

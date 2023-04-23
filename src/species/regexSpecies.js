@@ -43,7 +43,7 @@ function regexSpecies(textSpecies, species){
 function regexBaseStats(textBaseStats, species){
     let lines = textBaseStats.split("\n")
 
-    const regex = /baseHP|baseAttack|baseDefense|baseSpeed|baseSpAttack|baseSpDefense|type1|type2|itemCommon|itemRare|eggGroup1|eggGroup2|abilities/
+    const regex = /baseHP|baseAttack|baseDefense|baseSpeed|baseSpAttack|baseSpDefense|type1|type2|itemCommon|itemRare|eggGroup1|eggGroup2|abilities|catchRate/
     let stop = false, value, name, buildDefines = true, defines = {}, define = "", keep = false, argument = [], argumentDefine = []
 
     for(let i = 0; i < lines.length; i++){
@@ -143,7 +143,7 @@ function regexBaseStats(textBaseStats, species){
 
 
 
-                if(match === "baseHP" || match === "baseAttack" || match === "baseDefense" || match === "baseSpeed" || match === "baseSpAttack" || match === "baseSpDefense"){
+                if(match === "baseHP" || match === "baseAttack" || match === "baseDefense" || match === "baseSpeed" || match === "baseSpAttack" || match === "baseSpDefense" || match === "catchRate"){
                     const matchInt = line.match(/\d+/)
                     if(matchInt)
                         value = parseInt(matchInt[0])

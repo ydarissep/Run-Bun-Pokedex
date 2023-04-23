@@ -21,7 +21,9 @@ const speciesFormesText = document.getElementById("speciesFormesText")
 const speciesEggGroups = document.getElementById("speciesEggGroups")
 const speciesHeldItems = document.getElementById("speciesHeldItems")
 const speciesChanges = document.getElementById("speciesChanges")
+const speciesCatchRate = document.getElementById("speciesCatchRate")
 const speciesHeldItemsContainer = document.getElementById("speciesHeldItemsContainer")
+const speciesCatchRateContainer = document.getElementById("speciesCatchRateContainer")
 const speciesChangesContainer = document.getElementById("speciesChangesContainer")
 const speciesTypeChart = document.getElementById("speciesTypeChart")
 const speciesPanelLevelUpTableTbody = document.getElementById("speciesPanelLevelUpTableTbody")
@@ -189,6 +191,8 @@ async function createSpeciesPanel(name){
         speciesHeldItems.removeChild(speciesHeldItems.firstChild)
     while (speciesChanges.firstChild)
         speciesChanges.removeChild(speciesChanges.firstChild)
+    while (speciesCatchRate.firstChild)
+        speciesCatchRate.removeChild(speciesCatchRate.firstChild)
 
 
 
@@ -243,6 +247,14 @@ async function createSpeciesPanel(name){
     else
         speciesChangesContainer.classList.add("hide")
 
+
+
+
+
+    const catchRate = document.createElement("div")
+    catchRate.innerText = species[name]["catchRate"]
+    speciesCatchRate.append(catchRate)
+    
 
 
 

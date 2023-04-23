@@ -53,11 +53,11 @@
 	padding: 0px 0px 7px 15px;
 }
 
-#speciesEggGroupsContainer, #speciesHeldItemsContainer, #speciesChangesContainer {
+#speciesEggGroupsContainer, #speciesHeldItemsContainer, #speciesChangesContainer, #speciesCatchRateContainer {
 	flex: 1;
 }
 
-#speciesEggGroups, #speciesHeldItems, #speciesChanges {
+#speciesEggGroups, #speciesHeldItems, #speciesChanges, #speciesCatchRate {
 	font-size: 15px;
 	width: max-content;
 }

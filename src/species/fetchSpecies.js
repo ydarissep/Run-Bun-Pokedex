@@ -138,6 +138,7 @@ function initializeSpeciesObj(species){
         species[name]["evolutionLine"] = [name]
         species[name]["forms"] = []
         species[name]["sprite"] = ""
+        species[name]["catchRate"] = 0
     }
     return species
 }
